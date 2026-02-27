@@ -1,5 +1,7 @@
 FROM python:3.11-bullseye
 
+LABEL org.opencontainers.image.source="https://github.com/arroyave12/project-api-python.git"
+
 WORKDIR /app
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
@@ -24,4 +26,6 @@ RUN poetry install --no-root
 
 COPY . .
 
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "9005"]
+# CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "9005"] 
+
+CMD ["sh", "-c", "uvicorn app.main:app --host 0.0.0.0 --port${PORT:-8000}"]
