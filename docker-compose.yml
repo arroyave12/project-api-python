@@ -3,7 +3,7 @@ services:
     build: .
     container_name: fastapi-books
     ports:
-      - "9005:9005"
+      - "9005:8000"
     depends_on:
       db:
         condition: service_healthy
